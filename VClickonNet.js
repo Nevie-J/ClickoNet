@@ -13,21 +13,6 @@ const pcParts = [
 		file: 'models/CHICKEN.glb',
 		name: 'Easter Egg Chicken',
 		description: 'Just a random 3D chicken floating in cyberspace. A placeholder for a future PC component.'
-	},
-	{
-		file: 'models/ssd.glb',
-		name: 'Solid State Drive',
-		description: 'Provides long-term memory for the pc, storing data for long term use.'
-	},
-	{
-		file: 'models/fan.glb',
-		name: 'Fan',
-		description: 'Helps cool down the computer system, preventing overheating.'
-	},
-	{
-		file: 'models/motherboard.glb',
-		name: 'Motherboard',
-		description: 'Connects to every computer component.'
 	}
 ];
 
@@ -56,9 +41,12 @@ function createModelViewer(containerId) {
 	dirLight.position.set(5, 10, 7);
 	scene.add(dirLight);
 
+	// Setup controls with smooth damping and idle auto-rotation
 	const controls = new THREE.OrbitControls(camera, renderer.domElement);
 	controls.enableDamping = true;
 	controls.dampingFactor = 0.05;
+	controls.autoRotate = true; // Rotates when idle
+	controls.autoRotateSpeed = 2.0; // Adjust idle rotation speed here
 
 	let currentMesh = null;
 	let loadVersion = 0;
@@ -75,23 +63,31 @@ function createModelViewer(containerId) {
 			function (gltf) {
 				if (version !== loadVersion) return;
 
-				currentMesh = gltf.scene;
-				const box = new THREE.Box3().setFromObject(currentMesh);
-				const size = box.getSize(new THREE.Vector3());
-				const maxDim = Math.max(size.x, size.y, size.z);
+				const rawModel = gltf.scene;
 
+				// 1. Calculate bounding box of raw geometry
+				const box = new THREE.Box3().setFromObject(rawModel);
+				const center = box.getCenter(new THREE.Vector3());
+				const size = box.getSize(new THREE.Vector3());
+
+				// 2. Offset internal model geometry so its bounding center rests directly at (0, 0, 0)
+				rawModel.position.sub(center);
+
+				// 3. Wrap model inside a parent group to enforce a true pivot origin
+				const pivotGroup = new THREE.Group();
+				pivotGroup.add(rawModel);
+
+				// 4. Scale wrapper group uniformly
+				const maxDim = Math.max(size.x, size.y, size.z);
 				if (maxDim > 0) {
 					const scale = 3 / maxDim;
-					currentMesh.scale.set(scale, scale, scale);
+					pivotGroup.scale.set(scale, scale, scale);
 				}
 
-				currentMesh.updateMatrixWorld(true);
-				const center = new THREE.Box3()
-					.setFromObject(currentMesh)
-					.getCenter(new THREE.Vector3());
-				currentMesh.position.sub(center);
+				currentMesh = pivotGroup;
 				scene.add(currentMesh);
 
+				// 5. Target camera pivot at world origin
 				controls.target.set(0, 0, 0);
 				controls.update();
 			},
@@ -102,12 +98,13 @@ function createModelViewer(containerId) {
 		);
 	}
 
-function render() {
-    if (currentMesh && shouldRotate) {
-        currentMesh.rotation.y += 0.005;
-    }
-    controls.update();
-    renderer.render(scene, camera);
+	function render() {
+		// controls.update handles both physics damping and idle auto-rotation
+		controls.update();
+		renderer.render(scene, camera);
+	}
+
+	return { load, render };
 }
 
 const componentViewer = createModelViewer('3d-container-components');
