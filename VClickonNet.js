@@ -13,6 +13,21 @@ const pcParts = [
 		file: 'models/CHICKEN.glb',
 		name: 'Easter Egg Chicken',
 		description: 'Just a random 3D chicken floating in cyberspace. A placeholder for a future PC component.'
+	},
+	{
+		file: 'models/ssd.glb',
+		name: 'Solid State Drive',
+		description: 'Provides long-term memory for the pc, storing data for long term use.'
+	},
+	{
+		file: 'models/fan.glb',
+		name: 'Fan',
+		description: 'Helps cool down the computer system, preventing overheating.'
+	},
+	{
+		file: 'models/motherboard.glb',
+		name: 'Motherboard',
+		description: 'Connects to every computer component.'
 	}
 ];
 
