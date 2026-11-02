@@ -103,11 +103,11 @@ function createModelViewer(containerId) {
 	}
 
 function render() {
-	// currentMesh.rotation.y += 0.005; // Removed auto-rotation
-	controls.update();
-	renderer.render(scene, camera);
-}
-	return { load, render };
+    if (currentMesh && shouldRotate) {
+        currentMesh.rotation.y += 0.005;
+    }
+    controls.update();
+    renderer.render(scene, camera);
 }
 
 const componentViewer = createModelViewer('3d-container-components');
