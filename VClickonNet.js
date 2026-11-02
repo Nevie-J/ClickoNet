@@ -102,11 +102,6 @@ function createModelViewer(containerId) {
 		);
 	}
 
-	function render() {
-		if (currentMesh) currentMesh.rotation.y += 0.005;
-		controls.update();
-		renderer.render(scene, camera);
-	}
 
 	return { load, render };
 }
