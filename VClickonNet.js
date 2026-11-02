@@ -102,7 +102,11 @@ function createModelViewer(containerId) {
 		);
 	}
 
-
+function render() {
+	// currentMesh.rotation.y += 0.005; // Removed auto-rotation
+	controls.update();
+	renderer.render(scene, camera);
+}
 	return { load, render };
 }
 
