@@ -71,12 +71,10 @@ function createModelViewer(containerId) {
 	controls.autoRotate = true;
 	controls.autoRotateSpeed = 1.8;
 
-	// Stop auto-rotation when user starts interacting
 	controls.addEventListener('start', () => {
 		controls.autoRotate = false;
 	});
 
-	// Resume auto-rotation when interaction ends
 	controls.addEventListener('end', () => {
 		controls.autoRotate = true;
 	});
@@ -145,7 +143,6 @@ animate();
 
 function loadModelData(index) {
 	const partData = pcParts[index];
-
 	if (!partData) return;
 
 	document.getElementById('text-comp-name').innerText = partData.name;
