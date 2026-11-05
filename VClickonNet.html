@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClickonNet</title>
+    <link rel="stylesheet" href="VClickonNet.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script src="VClickonNet.js" defer></script>
+  </head>
+
+  <body>
+
+
+    <header id="welcome-message">
+      <h1>Welcome to ClickonNet</h1>
+    </header>
+    
+    <div id="dark-overlay"></div>
+
+    <button class="logo-btn" type="button" aria-label="Return to home">
+      <img src="Logo.png" alt="ClickonNet Logo" class="logo-mark">
+      <span class="logo-text">ClickonNet</span>
+    </button>
+
+    
+
+    <div id="nav-border" class="nav-container">
+          <button class="nav-btn" type="button" data-section="components">PC Components</button>
+          <button class="nav-btn" type="button" data-section="hazards">Hazards</button>
+          <button class="nav-btn" type="button" data-section="assembly">PC Assembly</button>
+    </div>
+
+    <div id="page-ui" class="fade-wrapper">
+      <hr id="nav-line">
+    </div>
+
+    <div id="descriptions" class="pccomponents hidden">
+      <h1 id="text-comp-name" class="model-text-box">Component Name</h1>
+      <p id="text-comp-desc" class="model-text-box">Component Description</p>
+    </div>
+
+    <div id="pc-components-section" class="pccomponents hidden">
+      <button class="arrow-btn left left-arrow-btn" type="button" data-change="-1" aria-label="Previous PC component">
+        <span>❮</span>
+      </button>
+      <div id="3d-container-components" class="model-container"></div>
+      <button class="arrow-btn right" type="button" data-change="1" aria-label="Next PC component">
+        <span>❯</span>
+      </button>
+    </div>
+
+    <div id="pc-assembly-section" class="pccomponents hidden">
+      <iframe src="https://mytekdev.com/try/pcworkshop?embed=1" title="PC Workshop demo from mytekDev" allow="fullscreen"></iframe>
+    </div>
+
+    <div id="hazards-section" class="pccomponents hidden">
+      <div id="hazard-buttons-container">
+        <button class="hazard-btn" type="button" data-hazard="static">Static</button>
+
+        <button class="hazard-btn" type="button" data-hazard="dust">Dust</button>
+
+        <button class="hazard-btn" type="button" data-hazard="water">Water</button>
+
+      
+
+	  </div>
+		
+      <div id="hazard-water-container" class="hidden">
+              <video id="hazard-water" class="video-btn" controls>
+                <source src="./hazardwater.mp4" type="video/mp4">
+              </video>
+                <h1 id="hazard-water-text" class="model-text-box">Spilling water on a running computer can cause a short circuit and permanent damage. If this happens, immediately unplug it, avoid turning it on, and have it professionally inspected and cleaned before using it again.</h1>
+      </div>
+      <div id="hazard-dust-container" class="hidden">
+          		<video id="hazard-dust" class="video-btn" controls>
+            		<source src="./hazarddust.mp4" type="video/mp4">
+          		</video>
+                <h1 id="hazard-dust-text" class="model-text-box">Dust buildup inside a computer can cause overheating and hardware damage. Regularly clean the fans, vents, and components using compressed air. Always turn off and unplug your computer before cleaning to maintain its performance and prevent damage.</h1>
+      </div>
+
+      <div id="hazard-static-container" class="hidden">
+          			<video id="hazard-static" class="video-btn" controls>
+            			<source src="./hazardstatic.mp4" type="video/mp4">
+          			</video>
+                <h1 id="hazard-static-text" class="model-text-box">Static electricity can damage sensitive computer components. To prevent this, ground yourself by touching a metal object before handling components, and avoid working on carpeted surfaces. Use an anti-static wrist strap for added protection.</h1>
+      </div>  
+
+         
+    </div>
+  </body>
+</html>
