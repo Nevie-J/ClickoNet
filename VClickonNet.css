@@ -1,3 +1,4 @@
+/* Global reset and shared page styling: establishes sizing, typography, and the background. */
 * {
 	box-sizing: border-box;
 }
@@ -19,6 +20,7 @@ body {
 	color: #eef6ff;
 }
 
+/* Overlay state: dims the page when active and prevents interaction while inactive. */
 #dark-overlay {
 	position: fixed;
 	inset: 0;
@@ -34,6 +36,7 @@ body {
 	pointer-events: auto;
 }
 
+/* Brand controls: styles the clickable logo and its hover treatment. */
 .logo-btn {
 	position: absolute;
 	top: 18px;
@@ -85,6 +88,7 @@ body {
 	box-shadow: 0 0 0 1px rgba(7, 17, 29, 0.05);
 }
 
+/* Page transition wrapper: fades page content in and out. */
 .fade-wrapper {
 	opacity: 1;
 	transition: opacity 0.5s ease-in-out;
@@ -94,6 +98,7 @@ body {
 	opacity: 0;
 }
 
+/* Primary navigation: layout, button states, and navigation visibility helpers. */
 .nav-container {
 	position: relative;
 	top: auto;
@@ -154,6 +159,7 @@ body {
 	display: none !important;
 }
 
+/* Component viewer: aligns the carousel controls and 3D model display. */
 #nav-line {
 	position: absolute;
 	left: 0;
@@ -238,6 +244,7 @@ body {
 	outline-offset: 4px;
 }
 
+/* 3D model frame: sizes the viewer and its canvas. */
 .model-container {
 	width: min(62vw, 500px);
 	aspect-ratio: 1;
@@ -256,6 +263,7 @@ body {
 	border-radius: 22px;
 }
 
+/* Component description: contains the selected part's name and explanatory text. */
 #descriptions {
 	position: relative;
 	width: min(100% - 32px, 820px);
@@ -288,6 +296,7 @@ body {
 	color: #dfefff;
 }
 
+/* Assembly viewer: frames the embedded PC assembly experience. */
 #pc-assembly-section {
 	position: relative;
 	width: min(100% - 32px, 1200px);
@@ -307,6 +316,7 @@ body {
 	border-radius: 16px;
 }
 
+/* Hazard controls and video presentation: base button and video styles. */
 #hazard-buttons-container {
 	display: flex;
 	justify-content: center;
@@ -348,6 +358,7 @@ body {
 	box-shadow: 0 18px 28px rgba(0, 0, 0, 0.24);
 }
 
+/* Welcome heading: centers introductory copy over the page. */
 #welcome-message {
 	position: fixed;
 	top: 50%;
@@ -366,6 +377,7 @@ body {
 	letter-spacing: 0.04em;
 }
 
+/* First narrow-screen spacing adjustments for navigation and major sections. */
 @media (max-width: 700px) {
 	.nav-container {
 		top: 18px;
@@ -391,6 +403,7 @@ body {
 	}
 }
 
+/* Hazard content: positions each hazard video beside its description. */
 #hazards-section {
 	position: relative;
 	width: min(100% - 32px, 1100px);
@@ -430,6 +443,7 @@ body {
 	border: 1px solid rgba(160, 190, 255, 0.28);
 }
 
+/* Mobile hazard presentation: stacks each video and description vertically. */
 @media (max-width: 700px) {
 	body {
 		background-attachment: scroll;
@@ -487,6 +501,7 @@ body {
 	}
 }
 
+/* Extra-small screens: reduce navigation, viewer controls, and text spacing. */
 @media (max-width: 420px) {
 	.nav-container {
 		padding-left: 100px;
@@ -520,7 +535,7 @@ body {
 	}
 }
 
-/* Responsive layout refinements */
+/* Shared responsive refinements: global media sizing and final desktop defaults. */
 html {
 	scroll-behavior: smooth;
 }
@@ -556,6 +571,7 @@ iframe {
 	text-align: left;
 }
 
+/* Tablet adjustments: scale navigation and description text for medium viewports. */
 @media (max-width: 900px) {
 	.nav-container {
 		gap: 6px;
@@ -577,6 +593,7 @@ iframe {
 	}
 }
 
+/* Mobile layout: reflows the header, component viewer, assembly, and hazard sections. */
 @media (max-width: 700px) {
 	.logo-btn {
 		position: relative;
@@ -711,6 +728,7 @@ iframe {
 	}
 }
 
+/* Very narrow phones: tighten the brand, navigation, and component viewer. */
 @media (max-width: 380px) {
 	.logo-btn {
 		gap: 8px;
@@ -746,6 +764,7 @@ iframe {
 	}
 }
 
+/* Short desktop viewports: reduce vertical gaps and embedded viewer height. */
 @media (max-height: 600px) and (min-width: 701px) {
 	.nav-container {
 		margin-top: 20px;
@@ -769,6 +788,7 @@ iframe {
 	}
 }
 
+/* Accessibility: minimize animation and transitions when reduced motion is requested. */
 @media (prefers-reduced-motion: reduce) {
 	html {
 		scroll-behavior: auto;
